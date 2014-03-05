@@ -9,7 +9,8 @@
 **/
 
 // Saves options to localStorage.
-function save_settings() {
+function save_settings () {
+	console.log('save_settings');
 	var name = $("#txtName").val();
 	var interval = $("#intInterval").val();
 
@@ -18,7 +19,8 @@ function save_settings() {
 }
 
 // Restores any values from localStorage.
-function restore_settings() {
+function restore_settings () {
+	console.log('restore_settings');
 	var savedInterval = localStorage["interval"];
 	if (!savedInterval) {
 		savedInterval = 10;
@@ -27,13 +29,20 @@ function restore_settings() {
 
 	var savedName = localStorage["name"];
 	if (!savedName) {
-		return;
+		return '';
 	}
 	$("#txtName").val(savedName);
 }
 
+function update_users () {
+	var savedName = localStorage["name"];
+	$('#user3').text(savedName);
+}
+
 // Initialise JS on popup
 document.addEventListener('DOMContentLoaded', function () {
+	console.log('DOM Content Loaded');
+	update_users();
 	// Call options restore
 	restore_settings();
 	

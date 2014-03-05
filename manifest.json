@@ -6,8 +6,7 @@
 	"version": "1.0",
 
 	"background": {
-		"page": "background.html",
-		"persistant": false
+		"page": "background.html"
 	},
 	"browser_action": {
 		"default_popup": "popup.html",
@@ -37,6 +36,7 @@
 		"alarms",
 		"management",
 		"tabs", 
-		"http://developer.appcelerator.com/questions/top-100-experts"
+		"http://developer.appcelerator.com/*",
+		"http://*.appcelerator.com/*"
 	]
 }
