@@ -6,7 +6,8 @@
 	"version": "1.0",
 
 	"background": {
-		"page": "background.html"
+		"scripts": ["background.js", "jquery-1.9.1.min.js"],
+		"persistant": false
 	},
 	"browser_action": {
 		"default_popup": "popup.html",
@@ -35,8 +36,8 @@
 	"permissions": [ 
 		"alarms",
 		"management",
-		"tabs", 
-		"http://developer.appcelerator.com/*",
-		"http://*.appcelerator.com/*"
+		"tabs",
+		"https://developer.appcelerator.com/questions/top-100-experts",
+		"https://developer.appcelerator.com/*"
 	]
 }
