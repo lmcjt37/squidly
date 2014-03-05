@@ -17,4 +17,5 @@ Changelog
 #####05/03/2014
 - Initial upload
 - Uses Bootstrap and JQuery Frameworks
-- Minor Function updates 
+- Minor Function updates
+- Minor Bug Fixes, includes fixing the remote origin request
