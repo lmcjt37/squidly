@@ -9,7 +9,7 @@ function updateRank () {
 
 			// Loop through DOM for matching classes and push to respective arrays
 			$(html).find('.top100-rank').each(function () {
-				arrRanks.push($(this).text());
+				arrRanks.push($(this).text().substring(1));
 			});
 			$(html).find('.top100-name').each(function () {
 				arrNames.push($(this).text());
@@ -17,11 +17,6 @@ function updateRank () {
 			$(html).find('.top100-points').each(function () {
 				arrPoints.push($(this).text());
 			});
-
-			// TEST
-			console.log(arrRanks);
-			console.log(arrNames);
-			console.log(arrPoints);
 		});
 	}
 }
@@ -42,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 		
 	chrome.alarms.onAlarm.addListener(function (alarm) {
-		if (alarm === 'refreshAlarm') {
+		if (alarm.name === 'refreshAlarm') {
 			updateRank();
 		}
 	});

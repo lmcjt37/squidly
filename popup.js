@@ -10,17 +10,17 @@
 
 // Saves options to localStorage.
 function save_settings () {
-	console.log('save_settings');
 	var name = $("#txtName").val();
 	var interval = $("#intInterval").val();
+	var tracking = $('input[name="optRadios"]:checked').val();
 
 	localStorage["name"] = name; // name of user to track
-	localStorage["interval"] = interval; // refresh interval in minutes	
+	localStorage["interval"] = interval; // refresh interval in minutes
+	localStorage["tracking"] = tracking; // check for tracking mode (single||multiple)
 }
 
 // Restores any values from localStorage.
 function restore_settings () {
-	console.log('restore_settings');
 	var savedInterval = localStorage["interval"];
 	if (!savedInterval) {
 		savedInterval = 10;
@@ -32,19 +32,47 @@ function restore_settings () {
 		return '';
 	}
 	$("#txtName").val(savedName);
+	
+	var savedTracking = localStorage["tracking"];
+	if (!savedTracking) {
+		savedTracking = 0;
+	}
+	if (savedTracking > 0) {
+		$("#single").prop("checked", true);
+	} else {
+		$("#multiple").prop("checked", true);
+	}
 }
 
-function update_users () {
-	var savedName = localStorage["name"];
-	$('#user3').text(savedName);
+function update_leaderboard () {
+	var storedName = localStorage["name"];
+	$('#user3').text(storedName); // tracked user
+	
+	// retrieve data from localstorage
+	// var username1 = localStorage["user1"],
+		// username2 = localStorage["user2"],
+		// username3 = localStorage["user3"],
+		// username4 = localStorage["user4"];
+		
+	// apply data to respective elements
+	// $('#user1').text(username1);
+	// $('#user2').text(username2);
+	// $('#user4').text(username3);
+	// $('#user5').text(username4);
+	
+	var storedTracking = localStorage["tracking"];
+	if (storedTracking > 0) {
+		$(".track").hide();
+	} else {
+		$(".track").show();
+	}
 }
 
 // Initialise JS on popup
 document.addEventListener('DOMContentLoaded', function () {
-	console.log('DOM Content Loaded');
-	update_users();
 	// Call options restore
 	restore_settings();
+	update_leaderboard();
 	
 	// Adds interaction for bootstrap tabs
 	$('#myTabs a').click(function (e) {
@@ -71,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				setTimeout(function() {
 					$('#myTabs a[href="#leaderboard"]').tab('show');
 					txt.html('Submit');
+					restore_settings();
+					update_leaderboard();
 				}, 300);
 			});
 		});
