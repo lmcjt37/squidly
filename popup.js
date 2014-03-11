@@ -46,11 +46,7 @@ function restore_settings () {
 
 // calculate % for progress bars
 function percent (s) {
-	console.log('s ::: ' + s);
-	console.log('s typeof ::: ' + typeof s);
 	var ts = localStorage["topscore"];
-	console.log('ts ::: ' + ts);
-	console.log('ts typeof ::: ' + typeof ts);
 	var t = ts.replace(',', '');
 	var n = s.replace(',', '');
 	return (n / t) * 100;
@@ -59,9 +55,8 @@ function percent (s) {
 function update_leaderboard () {	
 	// retrieve data from localstorage for surrounding users
 	var trackedUser = localStorage["trackeduser"];
-	if (!$.isEmptyObject(trackedUser)) {
-		var parsedT = JSON.parse(trackedUser); // parse to object
-		console.log('parsedT ::: ' + JSON.stringify(parsedT));
+	var parsedT = JSON.parse(trackedUser); // parse to object
+	if (!$.isEmptyObject(parsedT)) {
 		$('#user3').text(parsedT.name); // name
 		$('#user-rank-3').text(parsedT.rank); // rank
 		$('#user-score-3').text(parsedT.points); // points
@@ -71,8 +66,8 @@ function update_leaderboard () {
 	}
 	
 	var user1 = localStorage["user1"];
-	if (!$.isEmptyObject(user1)) {
-		var parsed1 = JSON.parse(user1);
+	var parsed1 = JSON.parse(user1);
+	if (!$.isEmptyObject(parsed1)) {
 		$('#user1').text(parsed1.name);
 		$('#user-rank-1').text(parsed1.rank);
 		$('#user-score-1').text(parsed1.points);
@@ -82,8 +77,8 @@ function update_leaderboard () {
 	}
 	
 	var user2 = localStorage["user2"];
-	if (!$.isEmptyObject(user2)) {
-		var parsed2 = JSON.parse(user2);
+	var parsed2 = JSON.parse(user2);
+	if (!$.isEmptyObject(parsed2)) {
 		$('#user2').text(parsed2.name);
 		$('#user-rank-2').text(parsed2.rank);
 		$('#user-score-2').text(parsed2.points);
@@ -93,8 +88,8 @@ function update_leaderboard () {
 	}
 	
 	var user3 = localStorage["user3"];
-	if (!$.isEmptyObject(user3)) {
-		var parsed3 = JSON.parse(user3);
+	var parsed3 = JSON.parse(user3);
+	if (!$.isEmptyObject(parsed3)) {
 		$('#user4').text(parsed3.name);
 		$('#user-rank-4').text(parsed3.rank);
 		$('#user-score-4').text(parsed3.points);
@@ -104,8 +99,8 @@ function update_leaderboard () {
 	}
 	
 	var user4 = localStorage["user4"];
-	if (!$.isEmptyObject(user4)) {
-		var parsed4 = JSON.parse(user4);
+	var parsed4 = JSON.parse(user4);
+	if (!$.isEmptyObject(parsed4)) {
 		$('#user5').text(parsed4.name);
 		$('#user-rank-5').text(parsed4.rank);
 		$('#user-score-5').text(parsed4.points);

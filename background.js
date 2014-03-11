@@ -5,22 +5,17 @@ function finder (str, array) {
 }
 
 function toTitleCase (str) {
-	var string;
-	if (str !== undefined) {
+	var string = '';
+	if (str !== '' && str !== undefined) {
 		string = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 			return letter.toUpperCase();
 		})
-	} 
-	// else {
-		// string = 'N/A';
-	// }
+	}
 	return string;
 }
 
-// function updateRank(rank) {
 function updateRank () {
 	var name = localStorage["name"];
-	console.log('name ::: ' + name);
 	if (name) {
 		$.get('https://developer.appcelerator.com/questions/top-100-experts', function (html) {
 			var arrNames = [],
@@ -44,10 +39,9 @@ function updateRank () {
 			});
 			function createUserObj(i) {
 				var obj = {};
-				if (i > 0) {
+				if (i >= 0) {
 					var obj = {
 						name: toTitleCase(arrNames[i]),
-						name: arrNames[i],
 						rank: arrRanks[i],
 						points: arrPoints[i]
 					};
@@ -56,8 +50,7 @@ function updateRank () {
 			}
 			
 			var index = finder(name, arrNames);
-			console.log('index ::: ' + index);
-			if (index > 0) {
+			if (index >= 0) {
 				switch (index) {
 					default:
 					case 0-9:
