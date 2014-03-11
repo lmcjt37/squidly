@@ -15,6 +15,13 @@ It creates a launcher inside Chrome next to the Omnibox allowing you to easily t
 Changelog
 -----------
 
+#####11/03/2014
+- Fixed bugs which kept crashing the scripts
+
+#####09/03/2014
+- Updated functions to update multiple users
+- Made additional data available for each user
+
 #####07/03/2014
 - Added option to change leaderboard view
 - Minor Funtion updates

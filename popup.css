@@ -37,6 +37,9 @@ h2,h3,p,a,span,label {
 }
 
 /* Progress Bars */
+.progress {
+	margin-top: 5px;
+}
 /*2nd*/
 .progress-bar {
 	background-color: #404040 !important;
@@ -64,6 +67,10 @@ h2,h3,p,a,span,label {
 .panel-primary>.panel-heading {
 	background-color: #CD1625 !important;
 	border-color: #CD1625 !important;
+}
+.panel-primary .badge {
+	background-color: #FFF !important;
+	color: #CD1625 !important;
 }
 .stretch {
 	margin-left: -15px;

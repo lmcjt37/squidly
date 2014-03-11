@@ -44,36 +44,96 @@ function restore_settings () {
 	}
 }
 
-function update_leaderboard () {
-	var storedName = localStorage["name"];
-	$('#user3').text(storedName); // tracked user
+// calculate % for progress bars
+function percent (s) {
+	console.log('s ::: ' + s);
+	console.log('s typeof ::: ' + typeof s);
+	var ts = localStorage["topscore"];
+	console.log('ts ::: ' + ts);
+	console.log('ts typeof ::: ' + typeof ts);
+	var t = ts.replace(',', '');
+	var n = s.replace(',', '');
+	return (n / t) * 100;
+}
+
+function update_leaderboard () {	
+	// retrieve data from localstorage for surrounding users
+	var trackedUser = localStorage["trackeduser"];
+	if (!$.isEmptyObject(trackedUser)) {
+		var parsedT = JSON.parse(trackedUser); // parse to object
+		console.log('parsedT ::: ' + JSON.stringify(parsedT));
+		$('#user3').text(parsedT.name); // name
+		$('#user-rank-3').text(parsedT.rank); // rank
+		$('#user-score-3').text(parsedT.points); // points
+		$('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
+	} else {
+		$('.hide3').hide();
+	}
 	
-	// retrieve data from localstorage
-	// var username1 = localStorage["user1"],
-		// username2 = localStorage["user2"],
-		// username3 = localStorage["user3"],
-		// username4 = localStorage["user4"];
+	var user1 = localStorage["user1"];
+	if (!$.isEmptyObject(user1)) {
+		var parsed1 = JSON.parse(user1);
+		$('#user1').text(parsed1.name);
+		$('#user-rank-1').text(parsed1.rank);
+		$('#user-score-1').text(parsed1.points);
+		$('#user-score-1').parent().width(percent(parsed1.points) + '%');
+	} else {
+		$('.hide1').hide();
+	}
+	
+	var user2 = localStorage["user2"];
+	if (!$.isEmptyObject(user2)) {
+		var parsed2 = JSON.parse(user2);
+		$('#user2').text(parsed2.name);
+		$('#user-rank-2').text(parsed2.rank);
+		$('#user-score-2').text(parsed2.points);
+		$('#user-score-2').parent().width(percent(parsed2.points) + '%');
+	} else {
+		$('.hide2').hide();
+	}
+	
+	var user3 = localStorage["user3"];
+	if (!$.isEmptyObject(user3)) {
+		var parsed3 = JSON.parse(user3);
+		$('#user4').text(parsed3.name);
+		$('#user-rank-4').text(parsed3.rank);
+		$('#user-score-4').text(parsed3.points);
+		$('#user-score-4').parent().width(percent(parsed3.points) + '%');
+	} else {
+		$('.hide4').hide();
+	}
+	
+	var user4 = localStorage["user4"];
+	if (!$.isEmptyObject(user4)) {
+		var parsed4 = JSON.parse(user4);
+		$('#user5').text(parsed4.name);
+		$('#user-rank-5').text(parsed4.rank);
+		$('#user-score-5').text(parsed4.points);
+		$('#user-score-5').parent().width(percent(parsed4.points) + '%');
+	} else {
+		$('.hide5').hide();
+	}
 		
-	// apply data to respective elements
-	// $('#user1').text(username1);
-	// $('#user2').text(username2);
-	// $('#user4').text(username3);
-	// $('#user5').text(username4);
-	
 	var storedTracking = localStorage["tracking"];
 	if (storedTracking > 0) {
-		$(".track").hide();
+		$(".hide1").hide();
+		$(".hide2").hide();
+		$(".hide4").hide();
+		$(".hide5").hide();
 	} else {
-		$(".track").show();
+		$(".hide1").show();
+		$(".hide2").show();
+		$(".hide4").show();
+		$(".hide5").show();
 	}
+	
 }
 
 // Initialise JS on popup
 document.addEventListener('DOMContentLoaded', function () {
-	// Call options restore
 	restore_settings();
 	update_leaderboard();
-	
+		
 	// Adds interaction for bootstrap tabs
 	$('#myTabs a').click(function (e) {
 		e.preventDefault();
