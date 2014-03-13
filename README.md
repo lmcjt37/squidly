@@ -15,6 +15,10 @@ It creates a launcher inside Chrome next to the Omnibox allowing you to easily t
 Changelog
 -----------
 
+#####13/03/2014
+
+- Updated function calculating progress bars relative to watched user
+
 #####11/03/2014
 - Fixed bugs which kept crashing the scripts
 

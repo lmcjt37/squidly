@@ -39,6 +39,7 @@ h2,h3,p,a,span,label {
 /* Progress Bars */
 .progress {
 	margin-top: 5px;
+	margin-bottom: 15px !important;
 }
 /*2nd*/
 .progress-bar {

@@ -49,41 +49,34 @@ function updateRank () {
 				return JSON.stringify(obj);
 			}
 			
+			function setTopScore (i) {
+				if (i <= 9) {
+					localStorage["topscore"] = arrPoints[0];
+				} else if (i >= 10 && i <= 19) {
+					localStorage["topscore"] = arrPoints[9];
+				} else if (i >= 20 && i <= 29) {
+					localStorage["topscore"] = arrPoints[19];
+				} else if (i >= 30 && i <= 39) {
+					localStorage["topscore"] = arrPoints[29];
+				} else if (i >= 40 && i <= 49) {
+					localStorage["topscore"] = arrPoints[39];
+				} else if (i >= 50 && i <= 59) {
+					localStorage["topscore"] = arrPoints[49];
+				} else if (i >= 60 && i <= 69) {
+					localStorage["topscore"] = arrPoints[59];
+				} else if (i >= 70 && i <= 79) {
+					localStorage["topscore"] = arrPoints[69];
+				} else if (i >= 80 && i <= 89) {
+					localStorage["topscore"] = arrPoints[79];
+				} else if (i >= 90 && i <= 99) {
+					localStorage["topscore"] = arrPoints[89];
+				}
+			}
+			
 			var index = finder(name, arrNames);
 			if (index >= 0) {
-				switch (index) {
-					default:
-					case 0-9:
-						localStorage["topscore"] = arrPoints[0];	
-						break;
-					case 10-19:
-						localStorage["topscore"] = arrPoints[9];
-						break;
-					case 20-29:
-						localStorage["topscore"] = arrPoints[19];
-						break;
-					case 30-39:
-						localStorage["topscore"] = arrPoints[29];
-						break;
-					case 40-49:
-						localStorage["topscore"] = arrPoints[39];
-						break;
-					case 50-59:
-						localStorage["topscore"] = arrPoints[49];
-						break;
-					case 60-69:
-						localStorage["topscore"] = arrPoints[59];
-						break;
-					case 70-79:
-						localStorage["topscore"] = arrPoints[69];
-						break;
-					case 80-89:
-						localStorage["topscore"] = arrPoints[79];
-						break;
-					case 90-99:
-						localStorage["topscore"] = arrPoints[89];
-						break;
-				}
+				setTopScore(index);
+				
 				localStorage["trackeduser"] = createUserObj(index);
 				localStorage["user1"] = createUserObj(index - 2); // 2 infront
 				localStorage["user2"] = createUserObj(index - 1); // 1 infront
@@ -96,17 +89,23 @@ function updateRank () {
 
 document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
+	setInterval(function () {
+		updateRank();
+	}, 3000);
+	
 	var savedInterval = localStorage["interval"];
 	if (!savedInterval) {
 		savedInterval = 10;
 	} else {
 		savedInterval = parseInt(savedInterval);
 	}
+	
 	chrome.runtime.onInstalled.addListener(function () {
 		chrome.alarms.create('refreshAlarm', { 
 			periodInMinutes: savedInterval 
 		});
 	});
+	
 	chrome.alarms.onAlarm.addListener(function (alarm) {
 		if (alarm.name === 'refreshAlarm') {
 			updateRank();

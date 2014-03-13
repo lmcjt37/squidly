@@ -57,69 +57,84 @@ function update_leaderboard () {
 	var trackedUser = localStorage["trackeduser"];
 	var parsedT = JSON.parse(trackedUser); // parse to object
 	if (!$.isEmptyObject(parsedT)) {
+		console.log('show tracked');
+		$("#hide3").show();
 		$('#user3').text(parsedT.name); // name
 		$('#user-rank-3').text(parsedT.rank); // rank
 		$('#user-score-3').text(parsedT.points); // points
 		$('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
 	} else {
-		$('.hide3').hide();
+		console.log('hide tracked');
+		$("#hide3").hide();
 	}
 	
 	var user1 = localStorage["user1"];
 	var parsed1 = JSON.parse(user1);
 	if (!$.isEmptyObject(parsed1)) {
+		console.log('show u1');
+		$("#hide1").show();
 		$('#user1').text(parsed1.name);
 		$('#user-rank-1').text(parsed1.rank);
 		$('#user-score-1').text(parsed1.points);
 		$('#user-score-1').parent().width(percent(parsed1.points) + '%');
 	} else {
-		$('.hide1').hide();
+		console.log('hide u1');
+		$("#hide1").hide();
 	}
 	
 	var user2 = localStorage["user2"];
 	var parsed2 = JSON.parse(user2);
 	if (!$.isEmptyObject(parsed2)) {
+		console.log('show u2');
+		$("#hide2").show();
 		$('#user2').text(parsed2.name);
 		$('#user-rank-2').text(parsed2.rank);
 		$('#user-score-2').text(parsed2.points);
 		$('#user-score-2').parent().width(percent(parsed2.points) + '%');
 	} else {
-		$('.hide2').hide();
+		console.log('hide u2');
+		$("#hide2").hide();
 	}
 	
 	var user3 = localStorage["user3"];
 	var parsed3 = JSON.parse(user3);
 	if (!$.isEmptyObject(parsed3)) {
+		console.log('show u3');
+		$("#hide4").show();
 		$('#user4').text(parsed3.name);
 		$('#user-rank-4').text(parsed3.rank);
 		$('#user-score-4').text(parsed3.points);
 		$('#user-score-4').parent().width(percent(parsed3.points) + '%');
 	} else {
-		$('.hide4').hide();
+		console.log('hide u3');
+		$("#hide4").hide();
 	}
 	
 	var user4 = localStorage["user4"];
 	var parsed4 = JSON.parse(user4);
 	if (!$.isEmptyObject(parsed4)) {
+		console.log('show u4');
+		$("#hide5").show();
 		$('#user5').text(parsed4.name);
 		$('#user-rank-5').text(parsed4.rank);
 		$('#user-score-5').text(parsed4.points);
 		$('#user-score-5').parent().width(percent(parsed4.points) + '%');
 	} else {
-		$('.hide5').hide();
+		console.log('hide u4');
+		$("#hide5").hide();
 	}
 		
 	var storedTracking = localStorage["tracking"];
 	if (storedTracking > 0) {
-		$(".hide1").hide();
-		$(".hide2").hide();
-		$(".hide4").hide();
-		$(".hide5").hide();
+		$("#hide1").hide();
+		$("#hide2").hide();
+		$("#hide4").hide();
+		$("#hide5").hide();
 	} else {
-		$(".hide1").show();
-		$(".hide2").show();
-		$(".hide4").show();
-		$(".hide5").show();
+		$("#hide1").show();
+		$("#hide2").show();
+		$("#hide4").show();
+		$("#hide5").show();
 	}
 	
 }
@@ -152,12 +167,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			txt.fadeIn(200, function () {
 				save_settings();
 				setTimeout(function() {
-					$('#myTabs a[href="#leaderboard"]').tab('show');
-					txt.html('Submit');
 					restore_settings();
 					update_leaderboard();
+					txt.html('Submit');
+					$('#myTabs a[href="#leaderboard"]').tab('show');
 				}, 300);
 			});
-		});
+		});		
 	});
 });
