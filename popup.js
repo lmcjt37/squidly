@@ -48,82 +48,13 @@ function restore_settings () {
 function percent (s) {
 	var ts = localStorage["topscore"];
 	var t = ts.replace(',', '');
+		t = parseInt(t) + 2500;
 	var n = s.replace(',', '');
 	return (n / t) * 100;
 }
 
 function update_leaderboard () {	
 	// retrieve data from localstorage for surrounding users
-	var trackedUser = localStorage["trackeduser"];
-	var parsedT = JSON.parse(trackedUser); // parse to object
-	if (!$.isEmptyObject(parsedT)) {
-		console.log('show tracked');
-		$("#hide3").show();
-		$('#user3').text(parsedT.name); // name
-		$('#user-rank-3').text(parsedT.rank); // rank
-		$('#user-score-3').text(parsedT.points); // points
-		$('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
-	} else {
-		console.log('hide tracked');
-		$("#hide3").hide();
-	}
-	
-	var user1 = localStorage["user1"];
-	var parsed1 = JSON.parse(user1);
-	if (!$.isEmptyObject(parsed1)) {
-		console.log('show u1');
-		$("#hide1").show();
-		$('#user1').text(parsed1.name);
-		$('#user-rank-1').text(parsed1.rank);
-		$('#user-score-1').text(parsed1.points);
-		$('#user-score-1').parent().width(percent(parsed1.points) + '%');
-	} else {
-		console.log('hide u1');
-		$("#hide1").hide();
-	}
-	
-	var user2 = localStorage["user2"];
-	var parsed2 = JSON.parse(user2);
-	if (!$.isEmptyObject(parsed2)) {
-		console.log('show u2');
-		$("#hide2").show();
-		$('#user2').text(parsed2.name);
-		$('#user-rank-2').text(parsed2.rank);
-		$('#user-score-2').text(parsed2.points);
-		$('#user-score-2').parent().width(percent(parsed2.points) + '%');
-	} else {
-		console.log('hide u2');
-		$("#hide2").hide();
-	}
-	
-	var user3 = localStorage["user3"];
-	var parsed3 = JSON.parse(user3);
-	if (!$.isEmptyObject(parsed3)) {
-		console.log('show u3');
-		$("#hide4").show();
-		$('#user4').text(parsed3.name);
-		$('#user-rank-4').text(parsed3.rank);
-		$('#user-score-4').text(parsed3.points);
-		$('#user-score-4').parent().width(percent(parsed3.points) + '%');
-	} else {
-		console.log('hide u3');
-		$("#hide4").hide();
-	}
-	
-	var user4 = localStorage["user4"];
-	var parsed4 = JSON.parse(user4);
-	if (!$.isEmptyObject(parsed4)) {
-		console.log('show u4');
-		$("#hide5").show();
-		$('#user5').text(parsed4.name);
-		$('#user-rank-5').text(parsed4.rank);
-		$('#user-score-5').text(parsed4.points);
-		$('#user-score-5').parent().width(percent(parsed4.points) + '%');
-	} else {
-		console.log('hide u4');
-		$("#hide5").hide();
-	}
-		
 	var storedTracking = localStorage["tracking"];
 	if (storedTracking > 0) {
 		$("#hide1").hide();
@@ -137,6 +68,60 @@ function update_leaderboard () {
 		$("#hide5").show();
 	}
 	
+	var trackedUser = localStorage["trackeduser"];
+	var parsedT = JSON.parse(trackedUser); // parse to object
+	if (!$.isEmptyObject(parsedT)) {
+		$('#user3').text(parsedT.name); // name
+		$('#user-rank-3').text(parsedT.rank); // rank
+		$('#user-score-3').text(parsedT.points); // points
+		$('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
+	} else {
+		$("#hide3").hide();
+	}
+	
+	var user1 = localStorage["user1"];
+	var parsed1 = JSON.parse(user1);
+	if (!$.isEmptyObject(parsed1)) {
+		$('#user1').text(parsed1.name);
+		$('#user-rank-1').text(parsed1.rank);
+		$('#user-score-1').text(parsed1.points);
+		$('#user-score-1').parent().width(percent(parsed1.points) + '%');
+	} else {
+		$("#hide1").hide();
+	}
+	
+	var user2 = localStorage["user2"];
+	var parsed2 = JSON.parse(user2);
+	if (!$.isEmptyObject(parsed2)) {
+		$('#user2').text(parsed2.name);
+		$('#user-rank-2').text(parsed2.rank);
+		$('#user-score-2').text(parsed2.points);
+		$('#user-score-2').parent().width(percent(parsed2.points) + '%');
+	} else {
+		$("#hide2").hide();
+	}
+	
+	var user3 = localStorage["user3"];
+	var parsed3 = JSON.parse(user3);
+	if (!$.isEmptyObject(parsed3)) {
+		$('#user4').text(parsed3.name);
+		$('#user-rank-4').text(parsed3.rank);
+		$('#user-score-4').text(parsed3.points);
+		$('#user-score-4').parent().width(percent(parsed3.points) + '%');
+	} else {
+		$("#hide4").hide();
+	}
+	
+	var user4 = localStorage["user4"];
+	var parsed4 = JSON.parse(user4);
+	if (!$.isEmptyObject(parsed4)) {
+		$('#user5').text(parsed4.name);
+		$('#user-rank-5').text(parsed4.rank);
+		$('#user-score-5').text(parsed4.points);
+		$('#user-score-5').parent().width(percent(parsed4.points) + '%');
+	} else {
+		$("#hide5").hide();
+	}	
 }
 
 // Initialise JS on popup
@@ -164,15 +149,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		var txt = $('#submit span');
 		txt.fadeOut(200, function () {
 			txt.html('Saved');
+			save_settings();
 			txt.fadeIn(200, function () {
-				save_settings();
 				setTimeout(function() {
-					restore_settings();
-					update_leaderboard();
 					txt.html('Submit');
-					$('#myTabs a[href="#leaderboard"]').tab('show');
-				}, 300);
+					update_leaderboard();
+					// $('#myTabs a[href="#leaderboard"]').tab('show');
+				}, 1000);
 			});
-		});		
+		});
+	});
+	
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		update_leaderboard();
 	});
 });

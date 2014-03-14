@@ -15,8 +15,11 @@ It creates a launcher inside Chrome next to the Omnibox allowing you to easily t
 Changelog
 -----------
 
-#####13/03/2014
+#####14/03/2014
+- Now fully working
+- Corrected hide/show of respective elements
 
+#####13/03/2014
 - Updated function calculating progress bars relative to watched user
 
 #####11/03/2014
