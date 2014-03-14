@@ -18,6 +18,8 @@ Changelog
 #####14/03/2014
 - Now fully working
 - Corrected hide/show of respective elements
+- Updated animation on submit
+- Fixed minor bug with progress bars
 
 #####13/03/2014
 - Updated function calculating progress bars relative to watched user

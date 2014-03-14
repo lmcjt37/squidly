@@ -50,7 +50,9 @@ function percent (s) {
 	var t = ts.replace(',', '');
 		t = parseInt(t) + 2500;
 	var n = s.replace(',', '');
-	return (n / t) * 100;
+	var a = (n / t) * 100;
+	if (a > 100) {a = 100;}
+	return a;
 }
 
 function update_leaderboard () {	
@@ -151,11 +153,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			txt.html('Saved');
 			save_settings();
 			txt.fadeIn(200, function () {
+				update_leaderboard();
 				setTimeout(function() {
+					$('#myTabs a[href="#leaderboard"]').tab('show');
 					txt.html('Submit');
-					update_leaderboard();
-					// $('#myTabs a[href="#leaderboard"]').tab('show');
-				}, 1000);
+				}, 800);
 			});
 		});
 	});
