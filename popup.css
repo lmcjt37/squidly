@@ -12,6 +12,9 @@ h2,h3,p,a,span,label {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 }
+.help-txt {
+	text-align: center;
+}
 
 /* Overiding styles for Bootstrap */
 .panel-default {

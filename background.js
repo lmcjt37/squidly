@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
 	setInterval(function () {
 		updateRank();
-	}, 500);
+	}, 250);
 	
 	var savedInterval = localStorage["interval"];
 	if (!savedInterval) {
