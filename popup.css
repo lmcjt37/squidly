@@ -45,22 +45,27 @@ h2,h3,p,a,span,label {
 	margin-bottom: 15px !important;
 }
 /*2nd*/
+.progress2,
 .progress-bar {
 	background-color: #404040 !important;
 }
 /*1st*/
+.progress1,
 .progress-bar-success {
 	background-color: #3e3e3e !important;
 }
 /*3rd*/
+.progress3,
 .progress-bar-info {
 	background-color: #5b5b5b !important;
 }
 /*4th*/
+.progress4,
 .progress-bar-warning {
 	background-color: #7e7e7e !important;
 }
 /*5th*/
+.progress5,
 .progress-bar-danger {
 	background-color: #818181 !important;
 }
