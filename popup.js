@@ -54,16 +54,19 @@ function percent (s) {
 }
 
 // check isEmpty
-function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
+// function isEmpty(obj) {
+    // for(var key in obj) {
+        // if(obj.hasOwnProperty(key))
+            // return false;
+    // }
+    // return true;
+// }
 
 function update_leaderboard () {
 	// retrieve data from localstorage for surrounding users
+	var content = localStorage["content"];
+	$('.main .panel-body').html(content);
+	
 	$('.help-txt').hide();
 	$("#hide1").show();
 	$("#hide2").show();
@@ -84,22 +87,21 @@ function update_leaderboard () {
 		$("#hide5").show();
 	}
 	
-	var trackedUser = localStorage["trackeduser"] || {};
-	if (!$.isEmptyObject(trackedUser)) {
-		var parsedT = JSON.parse(trackedUser) || {}; // parse to object
-		if (!$.isEmptyObject(parsedT)) {
-			$('#user3').text(parsedT.name); // name
-			$('#user-rank-3').text(parsedT.rank); // rank
-			$('#user-score-3').text(parsedT.points); // points
-			$('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
-		} 
-	} else {
-		$("#hide3").hide();
-	}
+	// var trackedUser = localStorage["trackeduser"] || {};
+	// if (!$.isEmptyObject(trackedUser)) {
+		// var parsedT = JSON.parse(trackedUser) || {}; // parse to object
+		// if (!$.isEmptyObject(parsedT)) {
+			// $('#user3').text(parsedT.name); // name
+			// $('#user-rank-3').text(parsedT.rank); // rank
+			// $('#user-score-3').text(parsedT.points); // points
+			// $('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
+		// } 
+	// } else {
+		// $("#hide3").hide();
+	// }
 	
 	var user1 = localStorage["user1"] || {};
-	console.log('u1 isempty ::: ' + isEmpty(user1));
-	if (!isEmpty(user1)) {
+	if (!$.isEmptyObject(user1)) {
 		var parsed1 = JSON.parse(user1) || {};
 		if (!$.isEmptyObject(parsed1)) {
 			$('#user1').text(parsed1.name);
@@ -112,7 +114,7 @@ function update_leaderboard () {
 	}
 	
 	var user2 = localStorage["user2"] || {};
-	if (!isEmpty(user2)) {
+	if (!$.isEmptyObject(user2)) {
 		var parsed2 = JSON.parse(user2) || {};
 		if (!$.isEmptyObject(parsed2)) {
 			$('#user2').text(parsed2.name);
@@ -125,26 +127,39 @@ function update_leaderboard () {
 	}
 	
 	var user3 = localStorage["user3"] || {};
-	if (!isEmpty(user3)) {
-		var parsed3 = JSON.parse(user3) || {};
+	if (!$.isEmptyObject(user3)) {
+		var parsed3 = JSON.parse(user3) || {}; // parse to object
 		if (!$.isEmptyObject(parsed3)) {
-			$('#user4').text(parsed3.name);
-			$('#user-rank-4').text(parsed3.rank);
-			$('#user-score-4').text(parsed3.points);
-			$('#user-score-4').parent().width(percent(parsed3.points) + '%');
+			$('#user3').text(parsed3.name); // name
+			$('#user-rank-3').text(parsed3.rank); // rank
+			$('#user-score-3').text(parsed3.points); // points
+			$('#user-score-3').parent().width(percent(parsed3.points) + '%'); // progress percentage
+		} 
+	} else {
+		$("#hide3").hide();
+	}
+	
+	var user4 = localStorage["user4"] || {};
+	if (!$.isEmptyObject(user4)) {
+		var parsed4 = JSON.parse(user4) || {};
+		if (!$.isEmptyObject(parsed4)) {
+			$('#user4').text(parsed4.name);
+			$('#user-rank-4').text(parsed4.rank);
+			$('#user-score-4').text(parsed4.points);
+			$('#user-score-4').parent().width(percent(parsed4.points) + '%');
 		}
 	} else {
 		$("#hide4").hide();
 	}
 	
-	var user4 = localStorage["user4"] || {};
-	if (!isEmpty(user4)) {
-		var parsed4 = JSON.parse(user4) || {};
-		if (!$.isEmptyObject(parsed4)) {
-			$('#user5').text(parsed4.name);
-			$('#user-rank-5').text(parsed4.rank);
-			$('#user-score-5').text(parsed4.points);
-			$('#user-score-5').parent().width(percent(parsed4.points) + '%');
+	var user5 = localStorage["user5"] || {};
+	if (!$.isEmptyObject(user5)) {
+		var parsed5 = JSON.parse(user5) || {};
+		if (!$.isEmptyObject(parsed5)) {
+			$('#user5').text(parsed5.name);
+			$('#user-rank-5').text(parsed5.rank);
+			$('#user-score-5').text(parsed5.points);
+			$('#user-score-5').parent().width(percent(parsed5.points) + '%');
 		}
 	} else {
 		$("#hide5").hide();
@@ -157,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	var name = localStorage["name"];
 	if (name) {
 		update_leaderboard();
-		console.log('2');
 	} else {
 		$('#hide1').hide();
 		$('#hide2').hide();
@@ -191,13 +205,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			txt.fadeIn(200, function () {
 				setTimeout(function() {
 					txt.html('Submit');
-					// update_leaderboard();
+					update_leaderboard();
 				}, 800);
+				$('#myTabs a[href="#leaderboard"]').tab('show');
 			});
 		});
 	});
+	
 	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		console.log('1');
 		update_leaderboard();
 	});
 });

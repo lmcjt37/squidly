@@ -4,6 +4,7 @@ function finder (str, array) {
 	return m;
 }
 
+// helper function to titlecase string e.g. fullnames
 function toTitleCase (str) {
 	var string = '';
 	if (str !== '' && str !== undefined) {
@@ -12,6 +13,34 @@ function toTitleCase (str) {
 		})
 	}
 	return string;
+}
+
+function getRow (i) {
+	var row = "<div id='hide" + i + "'>";
+	row = row + "	<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
+	row = row + "	<div class='progress'>";
+	row = row + "		<div class='progress-bar progress" + i + "' role='progressbar'>";
+	row = row + "			<span id='user-score-" + i + "'></span>";
+	row = row + "		</div>"
+	row = row + "	</div>"
+	row = row + "</div>";
+	return row;
+}
+
+function getSelectedRow (i) {
+	var selectedRow = "<div id='hide" + i + "'>";
+	selectedRow = selectedRow + "	<div class='panel panel-primary stretch'>";
+	selectedRow = selectedRow + "		<div class='panel-heading'>";
+	selectedRow = selectedRow + "			<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
+	selectedRow = selectedRow + "			<div class='progress'>";
+	selectedRow = selectedRow + "				<div class='progress-bar progress" + i + "' role='progressbar'>";
+	selectedRow = selectedRow + "					<span id='user-score-" + i + "'></span>";
+	selectedRow = selectedRow + "				</div>";
+	selectedRow = selectedRow + "			</div>";
+	selectedRow = selectedRow + "		</div>";
+	selectedRow = selectedRow + "	</div>";
+	selectedRow = selectedRow + "</div>";
+	return selectedRow;
 }
 
 function updateRank () {
@@ -52,11 +81,37 @@ function updateRank () {
 			var index = finder(name, arrNames);
 			if (index >= 0) {
 				localStorage["topscore"] = arrPoints[index];
-				localStorage["trackeduser"] = createUserObj(index);
-				localStorage["user1"] = createUserObj(index - 2); // 2 infront
-				localStorage["user2"] = createUserObj(index - 1); // 1 infront
-				localStorage["user3"] = createUserObj(index + 1); // 1 behind
-				localStorage["user4"] = createUserObj(index + 2); // 2 behind
+				// localStorage["trackeduser"] = createUserObj(index);
+				// localStorage["user1"] = createUserObj(index - 2); // 2 infront
+				// localStorage["user2"] = createUserObj(index - 1); // 1 infront
+				// localStorage["user3"] = createUserObj(index + 1); // 1 behind
+				// localStorage["user4"] = createUserObj(index + 2); // 2 behind
+				
+				var startID = 0,
+					strHTML = '';
+				if (index === 0) { 
+					startID = index; 
+				} else if (index === 1) { 
+					startID = index - 1; 
+				} else if (index === 98) { 
+					startID = index - 3;
+				} else if (index === 99) { 
+					startID = index - 4; 
+				} else {
+					startID = index - 2;
+				}
+				
+				for (var a = 0; a < 5; a++) {
+					var user = "user" + (a + 1);
+					localStorage[user] = createUserObj(startID);
+					if (index === startID) {
+						strHTML = strHTML + getSelectedRow(a + 1);
+					} else {
+						strHTML = strHTML + getRow(a + 1);
+					}
+					startID++;
+				}
+				localStorage["content"] = strHTML;
 			}
 		});
 	}
