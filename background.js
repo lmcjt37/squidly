@@ -1,3 +1,13 @@
+/**
+*
+*	Gazer App (extension)
+*		
+*	Author: Luke Taylor
+*	Description: Allows you to track a user from the Appcelerator Q & A Leaderboard. 
+*	Version: 1.0
+*
+**/
+
 // helper function to find the given string from the given array
 function finder (str, array) {
 	var m = $.inArray(str.toLowerCase(), array);
@@ -48,6 +58,7 @@ function updateRank () {
 	if (name) {
 		$.get('https://developer.appcelerator.com/questions/top-100-experts', function (html) {
 			var arrNames = [],
+				arrDevlinks = [],
 				arrPoints = [],
 				arrRanks = [];
 			// Loop through DOM for matching classes and push to respective arrays
@@ -61,6 +72,9 @@ function updateRank () {
 					arrNames.push($(this).text().toLowerCase());
 				}
 			});
+			$(html).find('.top100-name a').each(function (i) {
+				arrDevlinks.push("https://developer.appcelerator.com" + $(this).attr('href').toLowerCase());
+			});
 			$(html).find('.top100-points').each(function (i) {
 				if (i > 0) {
 					arrPoints.push($(this).text());
@@ -71,6 +85,7 @@ function updateRank () {
 				if (i >= 0 && i < 100) {
 					var obj = {
 						name: toTitleCase(arrNames[i]),
+						devlink: arrDevlinks[i],
 						rank: arrRanks[i],
 						points: arrPoints[i]
 					};
@@ -80,17 +95,15 @@ function updateRank () {
 			
 			var index = finder(name, arrNames);
 			if (index >= 0) {
-				localStorage["topscore"] = arrPoints[index];
-				// localStorage["trackeduser"] = createUserObj(index);
-				// localStorage["user1"] = createUserObj(index - 2); // 2 infront
-				// localStorage["user2"] = createUserObj(index - 1); // 1 infront
-				// localStorage["user3"] = createUserObj(index + 1); // 1 behind
-				// localStorage["user4"] = createUserObj(index + 2); // 2 behind
+				// localStorage["topscore"] = arrPoints[index];
+				chrome.browserAction.setBadgeText({ text: arrRanks[index] });
+				chrome.browserAction.setBadgeBackgroundColor({ color: '#CD1625' });
+				chrome.browserAction.setTitle({ title: arrPoints[index] });
 				
 				var startID = 0,
 					strHTML = '';
 				if (index === 0) { 
-					startID = index; 
+					startID = index;
 				} else if (index === 1) { 
 					startID = index - 1; 
 				} else if (index === 98) { 
@@ -100,6 +113,7 @@ function updateRank () {
 				} else {
 					startID = index - 2;
 				}
+				localStorage["topscore"] = arrPoints[startID];
 				
 				for (var a = 0; a < 5; a++) {
 					var user = "user" + (a + 1);
@@ -122,14 +136,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	setInterval(function () {
 		updateRank();
 	}, 250);
+	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+		console.log('before tab');
+		updateRank();
+	});
 	
-	var savedInterval = localStorage["interval"];
-	if (!savedInterval) {
-		savedInterval = 10;
-	} else {
-		savedInterval = parseInt(savedInterval);
-	}
-	
+	var savedInterval = 5;
+		
 	chrome.runtime.onInstalled.addListener(function () {
 		chrome.alarms.create('refreshAlarm', { 
 			periodInMinutes: savedInterval 

@@ -3,7 +3,7 @@
 *	Gazer App (extension)
 *		
 *	Author: Luke Taylor
-*	Description: Gazes at the Appcelerator Q&A top 100 and retrieves information related to the user you are watching.
+*	Description: Allows you to track a user from the Appcelerator Q & A Leaderboard.
 *	Version: 1.0
 *
 **/
@@ -11,21 +11,14 @@
 // Saves options to localStorage.
 function save_settings () {
 	var name = $("#txtName").val();
-	var interval = $("#intInterval").val();
 	var tracking = $('input[name="optRadios"]:checked').val();
 
 	localStorage["name"] = name || ""; // name of user to track
-	localStorage["interval"] = interval || 10; // refresh interval in minutes
 	localStorage["tracking"] = tracking || 0; // check for tracking mode (single||multiple)
 }
 
 // Restores any values from localStorage.
 function restore_settings () {
-	var savedInterval = localStorage["interval"];
-	if (!savedInterval) {
-		savedInterval = 10;
-	}
-	$("#intInterval").val(savedInterval);
 	var savedName = localStorage["name"];
 	if (!savedName) {
 		savedName = '';
@@ -53,15 +46,6 @@ function percent (s) {
 	return a;
 }
 
-// check isEmpty
-// function isEmpty(obj) {
-    // for(var key in obj) {
-        // if(obj.hasOwnProperty(key))
-            // return false;
-    // }
-    // return true;
-// }
-
 function update_leaderboard () {
 	// retrieve data from localstorage for surrounding users
 	var content = localStorage["content"];
@@ -87,24 +71,11 @@ function update_leaderboard () {
 		$("#hide5").show();
 	}
 	
-	// var trackedUser = localStorage["trackeduser"] || {};
-	// if (!$.isEmptyObject(trackedUser)) {
-		// var parsedT = JSON.parse(trackedUser) || {}; // parse to object
-		// if (!$.isEmptyObject(parsedT)) {
-			// $('#user3').text(parsedT.name); // name
-			// $('#user-rank-3').text(parsedT.rank); // rank
-			// $('#user-score-3').text(parsedT.points); // points
-			// $('#user-score-3').parent().width(percent(parsedT.points) + '%'); // progress percentage
-		// } 
-	// } else {
-		// $("#hide3").hide();
-	// }
-	
 	var user1 = localStorage["user1"] || {};
 	if (!$.isEmptyObject(user1)) {
 		var parsed1 = JSON.parse(user1) || {};
 		if (!$.isEmptyObject(parsed1)) {
-			$('#user1').text(parsed1.name);
+			$('#user1').html("<a class='devlink' href='" + parsed1.devlink + "'>" + parsed1.name + "</a>");
 			$('#user-rank-1').text(parsed1.rank);
 			$('#user-score-1').text(parsed1.points);
 			$('#user-score-1').parent().width(percent(parsed1.points) + '%');
@@ -117,7 +88,7 @@ function update_leaderboard () {
 	if (!$.isEmptyObject(user2)) {
 		var parsed2 = JSON.parse(user2) || {};
 		if (!$.isEmptyObject(parsed2)) {
-			$('#user2').text(parsed2.name);
+			$('#user2').html("<a class='devlink' href='" + parsed2.devlink + "'>" + parsed2.name + "</a>");
 			$('#user-rank-2').text(parsed2.rank);
 			$('#user-score-2').text(parsed2.points);
 			$('#user-score-2').parent().width(percent(parsed2.points) + '%');
@@ -128,12 +99,12 @@ function update_leaderboard () {
 	
 	var user3 = localStorage["user3"] || {};
 	if (!$.isEmptyObject(user3)) {
-		var parsed3 = JSON.parse(user3) || {}; // parse to object
+		var parsed3 = JSON.parse(user3) || {};
 		if (!$.isEmptyObject(parsed3)) {
-			$('#user3').text(parsed3.name); // name
-			$('#user-rank-3').text(parsed3.rank); // rank
-			$('#user-score-3').text(parsed3.points); // points
-			$('#user-score-3').parent().width(percent(parsed3.points) + '%'); // progress percentage
+			$('#user3').html("<a class='devlink' href='" + parsed3.devlink + "'>" + parsed3.name + "</a>");
+			$('#user-rank-3').text(parsed3.rank);
+			$('#user-score-3').text(parsed3.points);
+			$('#user-score-3').parent().width(percent(parsed3.points) + '%');
 		} 
 	} else {
 		$("#hide3").hide();
@@ -143,7 +114,7 @@ function update_leaderboard () {
 	if (!$.isEmptyObject(user4)) {
 		var parsed4 = JSON.parse(user4) || {};
 		if (!$.isEmptyObject(parsed4)) {
-			$('#user4').text(parsed4.name);
+			$('#user4').html("<a class='devlink' href='" + parsed4.devlink + "'>" + parsed4.name + "</a>");
 			$('#user-rank-4').text(parsed4.rank);
 			$('#user-score-4').text(parsed4.points);
 			$('#user-score-4').parent().width(percent(parsed4.points) + '%');
@@ -156,7 +127,7 @@ function update_leaderboard () {
 	if (!$.isEmptyObject(user5)) {
 		var parsed5 = JSON.parse(user5) || {};
 		if (!$.isEmptyObject(parsed5)) {
-			$('#user5').text(parsed5.name);
+			$('#user5').html("<a class='devlink' href='" + parsed5.devlink + "'>" + parsed5.name + "</a>");
 			$('#user-rank-5').text(parsed5.rank);
 			$('#user-score-5').text(parsed5.points);
 			$('#user-score-5').parent().width(percent(parsed5.points) + '%');
@@ -194,6 +165,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			chrome.tabs.create({url: newUrl});
 		}
 	});
+	
+	// Opens URL's for devlinks
+	$('.devlink').click(function () {
+		if ($(this).attr('href')) {
+			var newUrl = $(this).attr('href');
+			chrome.tabs.create({url: newUrl});
+		}
+	});
 
 	// Submit form information
 	$('#submit').click(function (e) {
@@ -207,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					txt.html('Submit');
 					update_leaderboard();
 				}, 800);
-				$('#myTabs a[href="#leaderboard"]').tab('show');
+				// $('#myTabs a[href="#leaderboard"]').tab('show');
 			});
 		});
 	});

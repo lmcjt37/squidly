@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "Gazer App",
-	"description": "Gazes at the Appcelerator Q&A top 100 and retrieves information related to the user you are watching.",
+	"description": "Allows you to track a user from the Appcelerator Q & A Leaderboard.",
 	"version": "1.0",
 
 	"background": {
