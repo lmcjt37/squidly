@@ -16,7 +16,7 @@ This extension allows you to track users in the Appcelerator Q & A Leaderboard. 
 
 ###Launching the extension
 **************************
-The extension can be found in the Chrome Webstore
+The extension can be found in the Chrome Webstore [here](#)
 
 This will add a launcher inside your Chrome browser, next to the Omnibox, allowing you to easily track and access this information.
 
