@@ -1,3 +1,9 @@
+/* Author: Luke Taylor 
+**
+** Description: Chrome Extension, Gazer App
+**
+*/
+
 body {
 	width: 350px;
 }
@@ -43,6 +49,7 @@ h2,h3,p,a,span,label {
 .progress {
 	margin-top: 5px;
 	margin-bottom: 15px !important;
+	border-radius: 2px;
 }
 /*2nd*/
 .progress2,
@@ -76,10 +83,23 @@ h2,h3,p,a,span,label {
 .panel-primary>.panel-heading {
 	background-color: #CD1625 !important;
 	border-color: #CD1625 !important;
+	color: #fff !important;
+}
+.panel-primary>.panel-heading {
+	box-shadow: 0px 2px 0px #A00500;
+}
+.devlink {
+	color: #333 !important;
+}
+.panel-primary .devlink {
+	color: #fff !important;
 }
 .panel-primary .badge {
 	background-color: #FFF !important;
 	color: #CD1625 !important;
+}
+.badge {
+	font-weight: 400 !important;
 }
 .stretch {
 	margin-left: -15px;
@@ -103,7 +123,19 @@ h2,h3,p,a,span,label {
 
 /* Buttons */
 .btn-danger {
-	color: #fff;
 	background-color: #CD1625;
 	border-color: #CE1625;
+	box-shadow: 0px 3px 0px #A00500;
+	color: #fff;
+}
+.btn-danger:active,
+.btn-danger.active {
+	margin-bottom: -2px;
+	margin-top: 2px;
+	box-shadow: 0px 1px 0px #A00500;
+}
+.btn:focus, 
+.btn:active:focus, 
+.btn.active:focus {
+	outline: 0 !important;
 }
