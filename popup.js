@@ -15,6 +15,8 @@ function save_settings () {
 
 	localStorage["name"] = name || ""; // name of user to track
 	localStorage["tracking"] = tracking || 0; // check for tracking mode (single||multiple)
+	
+	update_leaderboard();
 }
 
 // Restores any values from localStorage.
@@ -24,6 +26,7 @@ function restore_settings () {
 		savedName = '';
 	}
 	$("#txtName").val(savedName);
+	
 	var savedTracking = localStorage["tracking"];
 	if (!savedTracking) {
 		savedTracking = 0;
@@ -184,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			txt.fadeIn(200, function () {
 				setTimeout(function() {
 					txt.html('Submit');
-					update_leaderboard();
 				}, 800);
 				// $('#myTabs a[href="#leaderboard"]').tab('show');
 			});

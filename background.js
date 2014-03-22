@@ -136,10 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	setInterval(function () {
 		updateRank();
 	}, 250);
-	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		console.log('before tab');
-		updateRank();
-	});
 	
 	var savedInterval = 5;
 		
