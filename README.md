@@ -29,6 +29,16 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 Changelog
 -----------
 
+##### 0.4.4
+- Updated Styles
+- Updated and cleaned functions
+
+##### 0.4.3
+- Added DevLinks to the usernames
+
+##### 0.4.2
+- Added badge and title to quickly hover and see score and rank.
+
 ##### 0.4.1
 - Refactored code to use HTML templates
 - Speeded up the extensions load times.
