@@ -1,6 +1,6 @@
 /**
 *
-*	Gazer App (extension)
+*	Ogle Bot (extension)
 *		
 *	Author: Luke Taylor
 *	Description: Allows you to track a user from the Appcelerator Q & A Leaderboard. 
