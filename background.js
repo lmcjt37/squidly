@@ -10,15 +10,13 @@
 
 // helper function to find the given string from the given array
 function finder (str, array) {
-	var m = $.inArray(str.toLowerCase(), array);
-	return m;
+	return $.inArray(str.toLowerCase(), array);
 }
 
 // helper function to titlecase string e.g. fullnames
 function toTitleCase (str) {
-	var string = '';
 	if (str !== '' && str !== undefined) {
-		string = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+		var string = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 			return letter.toUpperCase();
 		})
 	}
@@ -26,7 +24,7 @@ function toTitleCase (str) {
 }
 
 function getRow (i) {
-	var row = "<div id='hide" + i + "'>";
+	var row = "<div id='row" + i + "'>";
 	row = row + "	<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
 	row = row + "	<div class='progress'>";
 	row = row + "		<div class='progress-bar progress" + i + "' role='progressbar'>";
@@ -38,7 +36,7 @@ function getRow (i) {
 }
 
 function getSelectedRow (i) {
-	var selectedRow = "<div id='hide" + i + "'>";
+	var selectedRow = "<div id='row" + i + "'>";
 	selectedRow = selectedRow + "	<div class='panel panel-primary stretch'>";
 	selectedRow = selectedRow + "		<div class='panel-heading'>";
 	selectedRow = selectedRow + "			<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
@@ -61,7 +59,6 @@ function updateRank () {
 				arrDevlinks = [],
 				arrPoints = [],
 				arrRanks = [];
-			// Loop through DOM for matching classes and push to respective arrays
 			$(html).find('.top100-rank').each(function (i) {
 				if (i > 0) {
 					arrRanks.push($(this).text().substring(1));
@@ -95,7 +92,6 @@ function updateRank () {
 			
 			var index = finder(name, arrNames);
 			if (index >= 0) {
-				// localStorage["topscore"] = arrPoints[index];
 				chrome.browserAction.setBadgeText({ text: arrRanks[index] });
 				chrome.browserAction.setBadgeBackgroundColor({ color: '#CD1625' });
 				chrome.browserAction.setTitle({ title: arrPoints[index] });
@@ -116,12 +112,13 @@ function updateRank () {
 				localStorage["topscore"] = arrPoints[startID];
 				
 				for (var a = 0; a < 5; a++) {
-					var user = "user" + (a + 1);
+					var id = a + 1;
+					var user = "user" + id;
 					localStorage[user] = createUserObj(startID);
 					if (index === startID) {
-						strHTML = strHTML + getSelectedRow(a + 1);
+						strHTML = strHTML + getSelectedRow(id);
 					} else {
-						strHTML = strHTML + getRow(a + 1);
+						strHTML = strHTML + getRow(id);
 					}
 					startID++;
 				}
