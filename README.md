@@ -32,6 +32,9 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 Changelog
 *********
 
+##### 0.6.1
+- Updated graphics.
+
 ##### 0.5.1
 - Preprocessed the CSS using LESS.
 - Renamed Extension from 'Gazer App' to current.

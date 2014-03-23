@@ -12,8 +12,8 @@
 	"browser_action": {
 		"default_popup": "popup.html",
 		"default_icon": {
-			"19": "icon_19.png",
-			"38": "icon_38.png"
+			"19": "/graphics/icon_19.png",
+			"38": "/graphics/icon_38.png"
 		}
 	},
 	"content_scripts": [ 
@@ -29,9 +29,9 @@
 		}
 	],
 	"icons": {
-		"16": "icon_16.png",
-		"48": "icon_48.png",
-		"128": "icon_128.png"
+		"16": "/graphics/icon_16.png",
+		"48": "/graphics/icon_48.png",
+		"128": "/graphics/icon_128.png"
 	},
 	"permissions": [ 
 		"alarms",
