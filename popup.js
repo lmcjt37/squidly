@@ -7,6 +7,8 @@
 *	Version: 1.0
 *
 **/
+
+// alert function for options tab
 function alert () {
 	var alert = localStorage["alert"];
 	if (alert === "true") {
@@ -64,17 +66,13 @@ function percent (s) {
 }
 
 function update_leaderboard () {
-	// retrieve data from localstorage for surrounding users
+	// retrieve html content from backgroundJS
 	var content = localStorage["content"];
 	$('.main .panel-body').html(content);
 	
 	$('.help-txt').hide();
-	$("#row1").show();
-	$("#row2").show();
-	$("#row3").show();
-	$("#row4").show();
-	$("#row5").show();
-			
+	
+	// changes the view type
 	var storedTracking = localStorage["tracking"] || 0;
 	if (storedTracking > 0) {
 		$('.main').find('.user').each(function (i) {
@@ -87,6 +85,7 @@ function update_leaderboard () {
 		});
 	}
 	
+	// loop through content and set user data
 	for (var i = 0; i < 5; i++) {
 		var id = i + 1;
 		var user = localStorage["user" + id] || {};
@@ -152,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 	
+	// bootstrap event called on tab selection before target tab is shown
 	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 		update_leaderboard();
 		alert();

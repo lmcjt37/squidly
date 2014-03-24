@@ -28,9 +28,20 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 - LESS (preprocessor)
 
 
+###Future updates:
+******************
+- Ability to search by rank.
+- Filtered search for user names within top 100.
+- Ability to track more than one user.
+
+
 *********
 Changelog
 *********
+
+##### 0.6.2
+- Minor bug fixes to view type.
+- Altered some labels in options tab.
 
 ##### 0.6.1
 - Updated graphics.

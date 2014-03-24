@@ -23,6 +23,7 @@ function toTitleCase (str) {
 	return string;
 }
 
+// get single unselected row
 function getRow (i) {
 	var row = "<div id='row" + i + "' class='user'>";
 	row = row + "	<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
@@ -35,6 +36,7 @@ function getRow (i) {
 	return row;
 }
 
+// get single selected row
 function getSelectedRow (i) {
 	var selectedRow = "<div id='row" + i + "' class='user selected'>";
 	selectedRow = selectedRow + "	<div class='panel panel-primary stretch'>";
@@ -51,6 +53,7 @@ function getSelectedRow (i) {
 	return selectedRow;
 }
 
+// retrieves data from webpage, creates arrays, objects and html content for leaderboard
 function updateRank () {
 	var name = localStorage["name"];
 	if (name) {
@@ -131,6 +134,7 @@ function updateRank () {
 	}
 }
 
+// onLoad update rank and set interval to check for changes, also Chrome Alarm API used for background updates
 document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
 	setInterval(function () {
