@@ -77,15 +77,14 @@ function update_leaderboard () {
 			
 	var storedTracking = localStorage["tracking"] || 0;
 	if (storedTracking > 0) {
-		$("#row1").hide();
-		$("#row2").hide();
-		$("#row4").hide();
-		$("#row5").hide();
+		$('.main').find('.user').each(function (i) {
+			$(this).hide();
+		});
+		$('.selected').show();
 	} else {
-		$("#row1").show();
-		$("#row2").show();
-		$("#row4").show();
-		$("#row5").show();
+		$('.main').find('.user').each(function (i) {
+			$(this).show();
+		});
 	}
 	
 	for (var i = 0; i < 5; i++) {

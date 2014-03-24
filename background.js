@@ -24,7 +24,7 @@ function toTitleCase (str) {
 }
 
 function getRow (i) {
-	var row = "<div id='row" + i + "'>";
+	var row = "<div id='row" + i + "' class='user'>";
 	row = row + "	<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
 	row = row + "	<div class='progress'>";
 	row = row + "		<div class='progress-bar progress" + i + "' role='progressbar'>";
@@ -36,7 +36,7 @@ function getRow (i) {
 }
 
 function getSelectedRow (i) {
-	var selectedRow = "<div id='row" + i + "'>";
+	var selectedRow = "<div id='row" + i + "' class='user selected'>";
 	selectedRow = selectedRow + "	<div class='panel panel-primary stretch'>";
 	selectedRow = selectedRow + "		<div class='panel-heading'>";
 	selectedRow = selectedRow + "			<span id='user-rank-" + i + "' class='badge'></span>&nbsp;<span id='user" + i + "'></span>";
