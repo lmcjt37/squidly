@@ -7,6 +7,19 @@
 *	Version: 1.0
 *
 **/
+function alert () {
+	var alert = localStorage["alert"];
+	if (alert === "true") {
+		$(".alert-txt").show();
+		$(".alert-txt").fadeIn(400, function () {
+			$(".alert-txt").html("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><span class='alert-link'>Bummer! We couldn't find them, please try again.</span></div>");
+		});
+	} else {
+		$(".alert-txt").fadeOut(400, function () {
+			$(".alert-txt").hide();
+		});
+	}
+}
 
 // Saves options to localStorage.
 function save_settings () {
@@ -17,6 +30,7 @@ function save_settings () {
 	localStorage["tracking"] = tracking || 0; // check for tracking mode (single||multiple)
 	
 	update_leaderboard();
+	alert();
 }
 
 // Restores any values from localStorage.
@@ -60,7 +74,7 @@ function update_leaderboard () {
 	$("#row3").show();
 	$("#row4").show();
 	$("#row5").show();
-		
+			
 	var storedTracking = localStorage["tracking"] || 0;
 	if (storedTracking > 0) {
 		$("#row1").hide();
@@ -132,14 +146,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			save_settings();
 			txt.fadeIn(200, function () {
 				setTimeout(function() {
+					alert();
 					txt.html('Submit');
 				}, 800);
-				// $('#myTabs a[href="#leaderboard"]').tab('show');
 			});
 		});
 	});
 	
 	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 		update_leaderboard();
+		alert();
 	});
 });

@@ -91,7 +91,10 @@ function updateRank () {
 			}
 			
 			var index = finder(name, arrNames);
-			if (index >= 0) {
+			if (index < 0) {
+				localStorage["alert"] = true;
+			} else {
+				localStorage["alert"] = false;
 				chrome.browserAction.setBadgeText({ text: arrRanks[index] });
 				chrome.browserAction.setBadgeBackgroundColor({ color: '#CD1625' });
 				chrome.browserAction.setTitle({ title: arrPoints[index] });
@@ -132,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
 	setInterval(function () {
 		updateRank();
-	}, 250);
+	}, 200);
 	
 	var savedInterval = 5;
 		
