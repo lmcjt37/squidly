@@ -8,6 +8,9 @@
 *
 **/
 
+// Get Background Page
+var bgPage = chrome.extension.getBackgroundPage();
+
 // alert function for options tab
 function alert () {
 	var alert = localStorage["alert"];
@@ -146,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				setTimeout(function() {
 					alert();
 					txt.html('Submit');
+					bgPage.updateRank();
 				}, 800);
 			});
 		});

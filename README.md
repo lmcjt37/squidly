@@ -41,7 +41,7 @@ Changelog
 *********
 
 ##### 1.1.0
-- Reduced when the app updates to when browser is opened and when you search a new user.
+- Reduced when the app updates to when browser is opened and when you search a new user, there is also an interval which is set to every 15mins.
 - Added Grunt task runner.
 
 ##### 0.6.2

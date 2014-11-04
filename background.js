@@ -55,6 +55,7 @@ function getSelectedRow (i) {
 
 // retrieves data from webpage, creates arrays, objects and html content for leaderboard
 function updateRank () {
+	console.log('update rank')
 	var name = localStorage["name"];
 	if (name) {
 		$.get('https://developer.appcelerator.com/questions/top-100-experts', function (html) {
@@ -137,11 +138,8 @@ function updateRank () {
 // onLoad update rank and set interval to check for changes, also Chrome Alarm API used for background updates
 document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
-	setInterval(function () {
-		updateRank();
-	}, 200);
 	
-	var savedInterval = 5;
+	var savedInterval = 15;
 		
 	chrome.runtime.onInstalled.addListener(function () {
 		chrome.alarms.create('refreshAlarm', { 
