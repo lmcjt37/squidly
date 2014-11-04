@@ -1,0 +1,6 @@
+/*====================================================
+		Project: <%= pkg.name %> 
+		Version: <%= pkg.version %>
+		Author: Luke Taylor
+		Created: <%= grunt.template.today() %>
+====================================================*/

@@ -3,3 +3,4 @@
 *.bak.js
 v1
 versions
+node_modules

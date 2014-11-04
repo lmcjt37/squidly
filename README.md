@@ -2,7 +2,7 @@
 *********
 
 #####Author: Luke Taylor
-#####Version: 1.0
+#####Version: 1.1.0
 
 *********
 
@@ -25,6 +25,7 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 ***************
 - Bootstrap
 - JQuery
+- Grunt
 - LESS (preprocessor)
 
 
@@ -38,6 +39,10 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 *********
 Changelog
 *********
+
+##### 1.1.0
+- Reduced when the app updates to when browser is opened and when you search a new user.
+- Added Grunt task runner.
 
 ##### 0.6.2
 - Minor bug fixes to view type.
