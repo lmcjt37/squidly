@@ -13,7 +13,8 @@ var bgPage = chrome.extension.getBackgroundPage();
 
 // alert function for options tab
 function alert () {
-	var alert = localStorage["alert"];
+	// var alert = localStorage["alert"];
+	var alert = chrome.storage.local.get("alert");
 	if (alert === "true") {
 		$(".alert-txt").show();
 		$(".alert-txt").fadeIn(400, function () {
@@ -31,8 +32,11 @@ function save_settings () {
 	var name = $("#txtName").val();
 	var tracking = $('input[name="optRadios"]:checked').val();
 	
-	localStorage["name"] = name || ""; // name of user to track
-	localStorage["tracking"] = tracking || 0; // check for tracking mode (single||multiple)
+	// localStorage["name"] = name || ""; // name of user to track
+	// localStorage["tracking"] = tracking || 0; // check for tracking mode (single||multiple)
+	
+	chrome.storage.local.set({"name": name || ""}); // name of user to track
+	chrome.storage.local.set({"tracking": tracking || 0}); // check for tracking mode (single||multiple)
 	
 	update_leaderboard();
 	alert();
@@ -40,13 +44,15 @@ function save_settings () {
 
 // Restores any values from localStorage.
 function restore_settings () {
-	var savedName = localStorage["name"];
+	// var savedName = localStorage["name"];
+	var savedName = chrome.storage.local.get("name");
 	if (!savedName) {
 		savedName = '';
 	}
 	$("#txtName").val(savedName);
 	
-	var savedTracking = localStorage["tracking"];
+	// var savedTracking = localStorage["tracking"];
+	var savedTracking = chrome.storage.local.get("tracking");
 	if (!savedTracking) {
 		savedTracking = 0;
 	}
@@ -59,7 +65,8 @@ function restore_settings () {
 
 // calculate % for progress bars
 function percent (s) {
-	var ts = localStorage["topscore"];
+	// var ts = localStorage["topscore"];
+	var ts = chrome.storage.local.get("topscore");
 	var t = ts.replace(',', '');
 		t = parseInt(t) + 2500;
 	var n = s.replace(',', '');
@@ -70,13 +77,15 @@ function percent (s) {
 
 function update_leaderboard () {
 	// retrieve html content from backgroundJS
-	var content = localStorage["content"];
+	// var content = localStorage["content"];
+	var content = chrome.storage.local.get("content");
 	$('.main .panel-body').html(content);
 	
 	$('.help-txt').hide();
 	
 	// changes the view type
-	var storedTracking = localStorage["tracking"] || 0;
+	// var storedTracking = localStorage["tracking"] || 0;
+	var storedTracking = chrome.storage.local.get("tracking") || 0;
 	if (storedTracking > 0) {
 		$('.main').find('.user').each(function (i) {
 			$(this).hide();
@@ -91,7 +100,8 @@ function update_leaderboard () {
 	// loop through content and set user data
 	for (var i = 0; i < 5; i++) {
 		var id = i + 1;
-		var user = localStorage["user" + id] || {};
+		// var user = localStorage["user" + id] || {};
+		var user = chrome.storage.local.get("user" + id) || {};
 		if (!$.isEmptyObject(user)) {
 			var parsed = JSON.parse(user) || {};
 			if (!$.isEmptyObject(parsed)) {
@@ -109,7 +119,8 @@ function update_leaderboard () {
 // Initialise JS on popup
 document.addEventListener('DOMContentLoaded', function () {
 	restore_settings();	
-	var name = localStorage["name"];
+	// var name = localStorage["name"];
+	var name = chrome.storage.local.get("name");
 	if (name) {
 		update_leaderboard();
 	} else {
