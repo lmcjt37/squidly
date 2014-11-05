@@ -155,6 +155,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 	
+	// Refresh button
+	$('#refresh').click(function (e) {
+		bgPage.updateRank();
+		$('#refresh i').addClass('fa-spin');
+		setTimeout(function () {
+			$('#refresh i').removeClass('fa-spin');
+		}, 1000);
+	});
+	
 	// bootstrap event called on tab selection before target tab is shown
 	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 		update_leaderboard();

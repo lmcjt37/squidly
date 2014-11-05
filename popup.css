@@ -2,7 +2,7 @@
 		Project: ogle_bot 
 		Version: 1.1.0
 		Author: Luke Taylor
-		Created: Tue Nov 04 2014 23:10:15
+		Created: Wed Nov 05 2014 23:14:56
 ====================================================*/
 /* Variables */
 /*@font-heading: 'Lobster Two', cursive;*/
@@ -43,7 +43,7 @@ label {
   margin-bottom: -15px;
 }
 .right-margin {
-  margin-right: 15px;
+  margin-right: 2px;
 }
 .center {
   text-align: center;
