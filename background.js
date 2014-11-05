@@ -93,8 +93,12 @@ function updateRank () {
 				}
 				return JSON.stringify(obj);
 			}
-			
-			var index = finder(name, arrNames);
+			var index;
+			if ($.isNumeric(name)) {
+				index = finder(name, arrRanks);
+			} else {
+				index = finder(name, arrNames);
+			}
 			if (index < 0) {
 				localStorage["alert"] = true;
 			} else {
