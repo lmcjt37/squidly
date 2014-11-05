@@ -56,7 +56,8 @@ function getSelectedRow (i) {
 // retrieves data from webpage, creates arrays, objects and html content for leaderboard
 function updateRank () {
 	console.log('update rank')
-	var name = localStorage["name"];
+	// var name = localStorage["name"];
+	var name = chrome.storage.local.get('name');
 	if (name) {
 		$.get('https://developer.appcelerator.com/questions/top-100-experts', function (html) {
 			var arrNames = [],
@@ -96,9 +97,11 @@ function updateRank () {
 			
 			var index = finder(name, arrNames);
 			if (index < 0) {
-				localStorage["alert"] = true;
+				// localStorage["alert"] = true;
+				chrome.storage.local.set({"alert": true});
 			} else {
-				localStorage["alert"] = false;
+				// localStorage["alert"] = false;
+				chrome.storage.local.set({"alert": false});
 				chrome.browserAction.setBadgeText({ text: arrRanks[index] });
 				chrome.browserAction.setBadgeBackgroundColor({ color: '#CD1625' });
 				chrome.browserAction.setTitle({ title: arrPoints[index] });
@@ -116,12 +119,14 @@ function updateRank () {
 				} else {
 					startID = index - 2;
 				}
-				localStorage["topscore"] = arrPoints[startID];
+				// localStorage["topscore"] = arrPoints[startID];
+				chrome.storage.local.set({"topscore": arrPoints[startID]});
 				
 				for (var a = 0; a < 5; a++) {
 					var id = a + 1;
 					var user = "user" + id;
-					localStorage[user] = createUserObj(startID);
+					// localStorage[user] = createUserObj(startID);
+					chrome.storage.local.set({user: createUserObj(startID)});
 					if (index === startID) {
 						strHTML = strHTML + getSelectedRow(id);
 					} else {
@@ -129,7 +134,8 @@ function updateRank () {
 					}
 					startID++;
 				}
-				localStorage["content"] = strHTML;
+				// localStorage["content"] = strHTML;
+				chrome.storage.local.set({"content": strHTML});
 			}
 		});
 	}
