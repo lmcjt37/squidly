@@ -57,7 +57,7 @@ function getSelectedRow (i) {
 function updateRank () {
 	console.log('update rank')
 	// var name = localStorage["name"];
-	var name = chrome.storage.local.get('name');
+	var name = chrome.storage.local.get("name");
 	if (name) {
 		$.get('https://developer.appcelerator.com/questions/top-100-experts', function (html) {
 			var arrNames = [],
