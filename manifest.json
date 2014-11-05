@@ -36,7 +36,6 @@
 	"permissions": [ 
 		"alarms",
 		"management",
-		"storage",
 		"tabs",
 		"https://developer.appcelerator.com/questions/top-100-experts",
 		"https://developer.appcelerator.com/*"
