@@ -35,6 +35,7 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 - Ability to search by rank.
 - Filtered search for user names within top 100.
 - Clicking the tracked user returns how many points ahead and behind you are.
+- Refresh button, which may replace the interval update.
 
 
 *********
