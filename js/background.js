@@ -144,7 +144,7 @@ function updateRank () {
 document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
 	
-	var savedInterval = 15;
+	var savedInterval = 20;
 		
 	chrome.runtime.onInstalled.addListener(function () {
 		chrome.alarms.create('refreshAlarm', { 
