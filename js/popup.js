@@ -170,8 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		alert();
 	});
 	
-	console.log(localStorage['arrNames'].split(','));
-	// Initiate typehead
+	// Initiate typehead, pulling array from local storage
 	$('#txtName').typeahead({
 		source: localStorage['arrNames'].split(','),
 		items: 5

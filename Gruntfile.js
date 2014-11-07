@@ -7,12 +7,12 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				files: {
-					'popup.css': 'popup.less'
+					'css/popup.css': 'css/popup.less'
 				}
 			}
 		},
 		watch: {
-			files: [ 'Gruntfile.js', 'popup.less' ],
+			files: [ 'Gruntfile.js', 'css/popup.less' ],
 			tasks: [ 'less' ]
 		}
 	});

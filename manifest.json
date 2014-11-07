@@ -6,7 +6,7 @@
 	"version": "1.1.0",
 
 	"background": {
-		"scripts": ["background.js", "jquery-1.9.1.min.js"],
+		"scripts": ["js/background.js", "js/jquery-1.9.1.min.js"],
 		"persistant": false
 	},
 	"browser_action": {
@@ -19,8 +19,8 @@
 	"content_scripts": [ 
 		{
 			"js": [ 
-				"jquery-1.9.1.min.js", 
-				"popup.js"
+				"js/jquery-1.9.1.min.js", 
+				"js/popup.js"
 			],
 			"matches": [ 
 				"http://*/*", 
