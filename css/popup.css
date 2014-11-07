@@ -1,0 +1,160 @@
+/*====================================================
+		Project: ogle_bot 
+		Version: 1.1.0
+		Author: Luke Taylor
+		Created: Fri Nov 07 2014 21:57:05
+====================================================*/
+/* Variables */
+/*@font-heading: 'Lobster Two', cursive;*/
+/* Mixins */
+/* Globals */
+body {
+  width: 350px;
+}
+h1 {
+  font-family: 'Denk One', cursive;
+  font-weight: 700;
+}
+h1 > span {
+  font-size: 10pt;
+}
+h2,
+h3,
+p,
+a,
+span,
+label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+.help-txt {
+  text-align: center;
+}
+.add-margin-top {
+  margin-top: 15px;
+}
+.add-margin-bottom {
+  margin-bottom: 15px;
+}
+.sub-margin-top {
+  margin-top: -15px;
+}
+.sub-margin-bottom {
+  margin-bottom: -15px;
+}
+.right-margin {
+  margin-right: 2px;
+}
+.center {
+  text-align: center;
+}
+/* Progress Bars */
+.progress {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+}
+/*default*/
+.progress-bar {
+  background-color: #404040;
+}
+/*1st*/
+.progress1 {
+  background-color: #272727;
+}
+/*2nd*/
+.progress2 {
+  background-color: #404040;
+}
+/*3rd*/
+.progress3 {
+  background-color: #5a5a5a;
+}
+/*4th*/
+.progress4 {
+  background-color: #737373;
+}
+/*5th*/
+.progress5 {
+  background-color: #8d8d8d;
+}
+.panel {
+  border-radius: 0px;
+}
+.panel-default {
+  border-color: transparent;
+}
+.panel-primary,
+.panel-primary > .panel-heading {
+  background-color: #cd1625;
+  border-color: #cd1625;
+  color: #ffffff;
+}
+.panel-primary > .panel-heading {
+  -webkit-box-shadow: 0px 2px 0px 0px #9f111d;
+  -moz-box-shadow: 0px 2px 0px 0px #9f111d;
+  box-shadow: 0px 2px 0px 0px #9f111d;
+}
+.devlink {
+  color: #333333;
+}
+.panel-primary .devlink {
+  color: #ffffff;
+}
+.panel-primary .badge {
+  background-color: #ffffff;
+  color: #cd1625;
+}
+.badge {
+  font-weight: 500;
+}
+.stretch {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* Tabs */
+.nav-tabs > li {
+  text-align: center;
+  width: 50%;
+}
+.nav-tabs > li > a {
+  color: #333333;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #cd1625;
+  color: #ffffff;
+  border-bottom: 1px solid #9f111d;
+}
+/* Buttons */
+.btn-danger {
+  background-color: #cd1625;
+  border-color: #cd1625;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 3px 0px 0px #9f111d;
+  -moz-box-shadow: 0px 3px 0px 0px #9f111d;
+  box-shadow: 0px 3px 0px 0px #9f111d;
+}
+.btn-danger:active,
+.btn-danger.active {
+  margin-bottom: -2px;
+  margin-top: 2px;
+  -webkit-box-shadow: 0px 1px 0px 0px #9f111d;
+  -moz-box-shadow: 0px 1px 0px 0px #9f111d;
+  box-shadow: 0px 1px 0px 0px #9f111d;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: 0;
+}
+/* Forms */
+.form-control {
+  border-radius: 2px;
+}
+/* Alert */
+.alert .alert-link {
+  font-weight: 500;
+  text-align: center;
+}
