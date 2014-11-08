@@ -1,5 +1,5 @@
-#Ogle Bot
-*********
+#Squidly (Renamed)
+******************
 
 #####Author: Luke Taylor
 #####Version: 1.1.0

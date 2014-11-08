@@ -1,6 +1,6 @@
 /**
 *
-*	Ogle Bot (extension)
+*	Squidly (extension)
 *		
 *	Author: Luke Taylor
 *	Description: Allows you to track a user from the Appcelerator Q & A Leaderboard. 
@@ -46,6 +46,10 @@ function getSelectedRow (i) {
 	selectedRow = selectedRow + "				<div class='progress-bar progress" + i + "' role='progressbar'>";
 	selectedRow = selectedRow + "					<span id='user-score-" + i + "'></span>";
 	selectedRow = selectedRow + "				</div>";
+	selectedRow = selectedRow + "			</div>";
+	selectedRow = selectedRow + "			<div id='diff' class='hidden'>";
+	selectedRow = selectedRow + "				<span id='up'><i class='fa fa-chevron-up'></i>&nbsp;<span class='stat'>1234</span></span>";
+	selectedRow = selectedRow + "				<span id='down' class='pull-right'><i class='fa fa-chevron-down'></i>&nbsp;<span class='stat'>5678</span></span>";
 	selectedRow = selectedRow + "			</div>";
 	selectedRow = selectedRow + "		</div>";
 	selectedRow = selectedRow + "	</div>";

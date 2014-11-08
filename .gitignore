@@ -2,5 +2,6 @@
 *.bak.css
 *.bak.js
 v1
+v2
 versions
 node_modules
