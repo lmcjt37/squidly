@@ -2,7 +2,7 @@
 		Project: squidly 
 		Version: 1.1.0
 		Author: Luke Taylor
-		Created: Sat Nov 08 2014 13:41:27
+		Created: Sun Nov 09 2014 16:41:08
 ====================================================*/
 /* Variables */
 /*@font-heading: 'Lobster Two', cursive;*/
@@ -157,4 +157,7 @@ label {
 .alert .alert-link {
   font-weight: 500;
   text-align: center;
+}
+.main {
+  margin-bottom: 0;
 }

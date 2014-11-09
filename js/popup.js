@@ -180,4 +180,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	$('.user.selected').on('click', function () {
 		$('.user.selected #diff').toggleClass('hidden');
 	});
+	// resets onclick when switching tabs
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		$('.user.selected').on('click', function () {
+			$('.user.selected #diff').toggleClass('hidden');
+		});
+	});
 });
