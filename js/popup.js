@@ -99,6 +99,9 @@ function update_leaderboard () {
 				$('#user-rank-' + id).text(parsed.rank);
 				$('#user-score-' + id).text(parsed.points);
 				$('#user-score-' + id).parent().width(percent(parsed.points) + '%');
+				
+				$('#up .stat').text(parsed.nextRank + " Points to next rank");
+				$('#down .stat').text(parsed.prevRank + " Points ahead of previous rank");
 			}
 		} else {
 			$("#row" + id).hide();
@@ -153,15 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				}, 800);
 			});
 		});
-	});
-	
-	// Refresh button
-	$('#refresh').click(function (e) {
-		bgPage.updateRank();
-		$('#refresh i').addClass('fa-spin');
-		setTimeout(function () {
-			$('#refresh i').removeClass('fa-spin');
-		}, 1000);
 	});
 	
 	// bootstrap event called on tab selection before target tab is shown

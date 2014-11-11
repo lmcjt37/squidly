@@ -48,8 +48,8 @@ function getSelectedRow (i) {
 	selectedRow = selectedRow + "				</div>";
 	selectedRow = selectedRow + "			</div>";
 	selectedRow = selectedRow + "			<div id='diff' class='hidden'>";
-	selectedRow = selectedRow + "				<span id='up'><i class='fa fa-chevron-up'></i>&nbsp;<span class='stat'>1234</span></span>";
-	selectedRow = selectedRow + "				<span id='down' class='pull-right'><i class='fa fa-chevron-down'></i>&nbsp;<span class='stat'>5678</span></span>";
+	selectedRow = selectedRow + "				<span id='up' class='pull-left'><i class='fa fa-chevron-up'></i>&nbsp;<span class='stat'></span></span>";
+	selectedRow = selectedRow + "				<span id='down' class='pull-left'><i class='fa fa-chevron-down'></i>&nbsp;<span class='stat'></span></span>";
 	selectedRow = selectedRow + "			</div>";
 	selectedRow = selectedRow + "		</div>";
 	selectedRow = selectedRow + "	</div>";
@@ -88,12 +88,18 @@ function updateRank () {
 			});
 			function createUserObj(i) {
 				var obj = {};
+				var nextID = i - 1;
+				var prevID = i + 1;
 				if (i >= 0 && i < 100) {
 					var obj = {
 						name: toTitleCase(arrNames[i]),
 						devlink: arrDevlinks[i],
 						rank: arrRanks[i],
-						points: arrPoints[i]
+						points: arrPoints[i],
+						nextPoint: arrPoints[nextID],
+						prevPoints: arrPoints[prevID],
+						nextRank: parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', '')),
+						prevRank: parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', ''))
 					};
 				}
 				return JSON.stringify(obj);
@@ -148,17 +154,17 @@ function updateRank () {
 document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
 	
-	var savedInterval = 20;
+	// var savedInterval = 20;
 		
-	chrome.runtime.onInstalled.addListener(function () {
-		chrome.alarms.create('refreshAlarm', { 
-			periodInMinutes: savedInterval 
-		});
-	});
+	// chrome.runtime.onInstalled.addListener(function () {
+		// chrome.alarms.create('refreshAlarm', { 
+			// periodInMinutes: savedInterval 
+		// });
+	// });
 	
-	chrome.alarms.onAlarm.addListener(function (alarm) {
-		if (alarm.name === 'refreshAlarm') {
-			updateRank();
-		}
-	});
+	// chrome.alarms.onAlarm.addListener(function (alarm) {
+		// if (alarm.name === 'refreshAlarm') {
+			// updateRank();
+		// }
+	// });
 });
