@@ -93,8 +93,8 @@ function updateRank () {
 				var prevID = i + 1;
 				if (i >= 0 && i < 100) {
 					if (i === index) {
-						localStorage['nextrank'] = parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', ''));
-						localStorage['prevrank'] = parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', ''));
+						localStorage['nextrank'] = (nextID !== -1) ? parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', '')) : 0;
+						localStorage['prevrank'] = (prevID < 100) ? parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', '')) : 0;
 					}
 					var obj = {
 						name: toTitleCase(arrNames[i]),
