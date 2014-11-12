@@ -13,6 +13,7 @@ This extension allows you to track users in the Appcelerator Q & A Leaderboard. 
 - User tracking and Tracking Mode.
 - Quick links to Top 100, Q&A and Docs.
 - Search by Name or Rank, including a filtered search.
+- Clicking the selected user shows point stats.
 
 
 ###Launching the extension
@@ -31,11 +32,6 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 - Typeahead.js
 
 
-###Future updates:
-******************
-- Clicking the tracked user row returns how many points ahead and behind you are.
-
-
 *********
 Changelog
 *********
@@ -45,6 +41,7 @@ Changelog
 - Added Grunt task runner.
 - Added ability to search by rank as well as name.
 - Added Typeahead.js for searchable names.
+- Added stats to selected user.
 
 ##### 0.6.2
 - Minor bug fixes to view type.
