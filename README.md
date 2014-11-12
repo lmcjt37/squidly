@@ -92,3 +92,7 @@ Changelog
 - Added Bootstrap and JQuery Frameworks.
 - Added helper functions.
 - Minor Bug Fixes, includes fixing the remote origin request.
+
+###Contact Me
+***************
+[@LMCJT](https://twitter.com/LMCJT)
