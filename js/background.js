@@ -66,7 +66,8 @@ function updateRank () {
 			var arrNames = [],
 				arrDevlinks = [],
 				arrPoints = [],
-				arrRanks = [];
+				arrRanks = [],
+				index;
 			$(html).find('.top100-rank').each(function (i) {
 				if (i > 0) {
 					arrRanks.push($(this).text().substring(1));
@@ -91,20 +92,19 @@ function updateRank () {
 				var nextID = i - 1;
 				var prevID = i + 1;
 				if (i >= 0 && i < 100) {
+					if (i === index) {
+						localStorage['nextrank'] = parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', ''));
+						localStorage['prevrank'] = parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', ''));
+					}
 					var obj = {
 						name: toTitleCase(arrNames[i]),
 						devlink: arrDevlinks[i],
 						rank: arrRanks[i],
-						points: arrPoints[i],
-						nextPoint: arrPoints[nextID],
-						prevPoints: arrPoints[prevID],
-						nextRank: parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', '')),
-						prevRank: parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', ''))
+						points: arrPoints[i]
 					};
 				}
 				return JSON.stringify(obj);
 			}
-			var index;
 			if ($.isNumeric(name)) {
 				index = finder(name, arrRanks);
 			} else {

@@ -100,8 +100,8 @@ function update_leaderboard () {
 				$('#user-score-' + id).text(parsed.points);
 				$('#user-score-' + id).parent().width(percent(parsed.points) + '%');
 				
-				$('#up .stat').text(parsed.nextRank + " Points to next rank");
-				$('#down .stat').text(parsed.prevRank + " Points ahead of previous rank");
+				$('#up .stat').text(localStorage["nextrank"] + " Points to next rank");
+				$('#down .stat').text(localStorage["prevrank"] + " Points ahead of previous rank");
 			}
 		} else {
 			$("#row" + id).hide();
