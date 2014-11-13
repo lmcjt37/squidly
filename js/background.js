@@ -48,6 +48,7 @@ function getSelectedRow (i) {
 	selectedRow = selectedRow + "				</div>";
 	selectedRow = selectedRow + "			</div>";
 	selectedRow = selectedRow + "			<div id='diff' class='hidden'>";
+	selectedRow = selectedRow + "				<span id='milestone' class='pull-left'><i class='fa fa-flag-checkered'></i>&nbsp;<span class='stat'></span></span>";
 	selectedRow = selectedRow + "				<span id='up' class='pull-left'><i class='fa fa-chevron-up'></i>&nbsp;<span class='stat'></span></span>";
 	selectedRow = selectedRow + "				<span id='down' class='pull-left'><i class='fa fa-chevron-down'></i>&nbsp;<span class='stat'></span></span>";
 	selectedRow = selectedRow + "			</div>";
@@ -93,8 +94,11 @@ function updateRank () {
 				var prevID = i + 1;
 				if (i >= 0 && i < 100) {
 					if (i === index) {
-						localStorage['nextrank'] = (nextID !== -1) ? parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', '')) : 0;
-						localStorage['prevrank'] = (prevID < 100) ? parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', '')) : 0;
+						var rounded = Math.ceil(parseInt((arrPoints[i]).replace(',', ''))/10000) * 10000;
+						var curVal = parseInt((arrPoints[i]).replace(',', ''));
+						localStorage['milestone'] = (rounded - curVal).toLocaleString('en-GB');
+						localStorage['nextrank'] = (nextID !== -1) ? (parseInt((arrPoints[nextID]).replace(',', '')) - parseInt((arrPoints[i]).replace(',', ''))).toLocaleString('en-GB') : 0;
+						localStorage['prevrank'] = (prevID < 100) ? (parseInt((arrPoints[i]).replace(',', '')) - parseInt((arrPoints[prevID]).replace(',', ''))).toLocaleString('en-GB') : 0;
 					}
 					var obj = {
 						name: toTitleCase(arrNames[i]),

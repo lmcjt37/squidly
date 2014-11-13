@@ -34,6 +34,7 @@ function save_settings () {
 	localStorage["name"] = name || ""; // name of user to track
 	localStorage["tracking"] = tracking || 0; // check for tracking mode (single||multiple)
 	
+	bgPage.updateRank();
 	update_leaderboard();
 	alert();
 }
@@ -102,6 +103,7 @@ function update_leaderboard () {
 				
 				$('#up .stat').text(localStorage["nextrank"] + " Points to next rank");
 				$('#down .stat').text(localStorage["prevrank"] + " Points ahead of previous rank");
+				$('#milestone .stat').text(localStorage["milestone"] + " Points to next milestone");
 			}
 		} else {
 			$("#row" + id).hide();
@@ -150,9 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			save_settings();
 			txt.fadeIn(200, function () {
 				setTimeout(function() {
+					// bgPage.updateRank();
 					alert();
 					txt.html('Submit');
-					bgPage.updateRank();
 				}, 800);
 			});
 		});
