@@ -2,7 +2,7 @@
 		Project: squidly 
 		Version: 1.1.0
 		Author: Luke Taylor
-		Created: Tue Nov 11 2014 23:49:54
+		Created: Thu Nov 13 2014 01:07:48
 ====================================================*/
 /* Variables */
 /*@font-heading: 'Lobster Two', cursive;*/
@@ -51,7 +51,7 @@ label {
 /* Progress Bars */
 .progress {
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   border-radius: 2px;
 }
 /*default*/
@@ -132,6 +132,7 @@ label {
   background-color: #cd1625;
   border-color: #cd1625;
   color: #ffffff;
+  padding: 6px 15px;
   -webkit-box-shadow: 0px 3px 0px 0px #9f111d;
   -moz-box-shadow: 0px 3px 0px 0px #9f111d;
   box-shadow: 0px 3px 0px 0px #9f111d;
@@ -163,4 +164,7 @@ label {
 }
 #diff {
   overflow: auto;
+}
+#quicklink {
+  margin-top: -10px;
 }
