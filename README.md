@@ -2,7 +2,7 @@
 ******************
 
 #####Author: Luke Taylor
-#####Version: 1.1.0
+#####Version: 1.1.1
 
 *********
 
@@ -35,6 +35,12 @@ This will add a launcher inside your Chrome browser, next to the Omnibox, allowi
 *********
 Changelog
 *********
+
+##### 1.1.1
+- Updated submit button to run functions quicker.
+- Added milestone to stats.
+- UI tweaks.
+- Bug Fixes.
 
 ##### 1.1.0
 - Reduced when the app updates to when browser is opened and when you search a new user.

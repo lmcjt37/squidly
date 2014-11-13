@@ -4,7 +4,7 @@
 *		
 *	Author: Luke Taylor
 *	Description: Allows you to track a user from the Appcelerator Q & A Leaderboard.
-*	Version: 1.1.0
+*	Version: 1.1.1
 *
 **/
 
