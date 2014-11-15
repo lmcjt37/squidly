@@ -119,7 +119,8 @@ function updateRank () {
 			} else {
 				localStorage["alert"] = false;
 				chrome.browserAction.setBadgeText({ text: arrRanks[index] });
-				chrome.browserAction.setBadgeBackgroundColor({ color: '#CD1625' });
+				// chrome.browserAction.setBadgeBackgroundColor({ color: '#CD1625' });
+				chrome.browserAction.setBadgeBackgroundColor({ color: '#000' });
 				chrome.browserAction.setTitle({ title: arrPoints[index] });
 				
 				var startID = 0,
@@ -158,17 +159,17 @@ function updateRank () {
 document.addEventListener('DOMContentLoaded', function () {
 	updateRank();
 	
-	// var savedInterval = 20;
+	var savedInterval = 30;
 		
-	// chrome.runtime.onInstalled.addListener(function () {
-		// chrome.alarms.create('refreshAlarm', { 
-			// periodInMinutes: savedInterval 
-		// });
-	// });
+	chrome.runtime.onInstalled.addListener(function () {
+		chrome.alarms.create('refreshAlarm', { 
+			periodInMinutes: savedInterval 
+		});
+	});
 	
-	// chrome.alarms.onAlarm.addListener(function (alarm) {
-		// if (alarm.name === 'refreshAlarm') {
-			// updateRank();
-		// }
-	// });
+	chrome.alarms.onAlarm.addListener(function (alarm) {
+		if (alarm.name === 'refreshAlarm') {
+			updateRank();
+		}
+	});
 });
